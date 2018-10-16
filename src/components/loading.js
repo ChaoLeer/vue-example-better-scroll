@@ -22,8 +22,8 @@ Loading = {
           }
         })
         loadNode = new loadingTpl()
-        var loadingTpl = loadNode.$mount().$el;
-        document.body.appendChild(loadingTpl);
+        var tpl = loadNode.$mount().$el;
+        document.body.appendChild(tpl);
       },
       hide() {
         document.querySelector('.loading-wrapper').remove()

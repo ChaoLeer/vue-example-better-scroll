@@ -1,10 +1,14 @@
 <template>
+<div>
+  <!-- 测试当前点击列表项 -->
+  <div style="color: #ff0000">{{item}}</div>
   <div ref="wrapper" class="container">
     <ul class="list-content">
       <li @click="clickItem(item)" class="list-item"
         v-for="(item,idx) in data" :key="idx">{{item}}</li>
     </ul>
   </div>
+</div>
 </template>
 <script>
 import Vue from 'vue'
@@ -15,6 +19,7 @@ export default {
   name: 'BetterScrollExample',
   data() {
     return {
+      item: null,
       data: [], // 存储列表数据
       scroll: null, // 存储scroll实例对象
       isPullUpLoad: false, // 存储上拉加载状态
@@ -39,7 +44,7 @@ export default {
       const vm = this
       // 此处使用遮罩加载，防止多次触发上拉(即用户短时间内重复上拉)
       vm.$loading.start('loading...')
-      console.info('加载数据--start')
+      // console.info('加载数据--start')
 
       // 此处模拟异步请求数据------------此处只是示例代码，使用时候参考即可
       // axios('/url', 'post', {
@@ -65,7 +70,7 @@ export default {
             text: '年后' + i
           })
         }
-        console.info('数据加载--end')
+        // console.info('数据加载--end')
         // 数据加载完成后，赋值给列表data后，需显示调用scroll的上拉完成方法，文档API要求
         vm.scroll.finishPullUp()
         // 数据加载完成后，移除加载动画遮罩层
@@ -109,7 +114,7 @@ export default {
     },
     // 点击列表单项
     clickItem(item) {
-      console.info(item)
+      this.item = item
     }
   }
 }
